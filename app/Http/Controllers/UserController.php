@@ -46,6 +46,20 @@ class UserController extends Controller
             'start_from'=>'required',
             'designation'=>'required'
         ]);
+
+        $data = $request->all();
+        if($request->hasFile('image')){
+            $image = $request->image->hashName();
+            $request->image->move(public_path('profile'),$image);
+        }else{
+            $image = 'avatar2.png';
+        }
+        
+        $data['name'] = $request->firstname.' '.$request->lastname;
+        $data['image']=$image;
+        $data['password']= bcrypt($request->password);
+        User::create($data);
+        return redirect()->back()->with('message','User created Successfully');
     }
 
     /**
