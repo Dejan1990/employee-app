@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -34,7 +35,13 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:departments'
+        ]);
+
+        $data = $request->all();
+        Department::create($data);
+        return back()->with('message', 'Department created Successfully');
     }
 
     /**

@@ -15,7 +15,7 @@
                         {{ Session::get('message') }}
                     </div>
                 @endif
-                <form action="#" method="post">
+                <form action="{{ route('departments.store') }}" method="post">
                     @csrf
                     <div class="card">
                         <div class="card-header">Create New Department</div>
