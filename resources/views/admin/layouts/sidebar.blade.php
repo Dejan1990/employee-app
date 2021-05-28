@@ -54,6 +54,22 @@
                                     <a class="nav-link" href="{{ route('users.create') }}">Create User</a>
                                 </nav>
                             </div>
+                            <a class="nav-link collapsed" href="{{ route('roles.index') }}" data-toggle="collapse"
+                                data-target="#pagesCollapsePermission" aria-expanded="false"
+                                aria-controls="pagesCollapsePermission">Permission
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="pagesCollapsePermission" aria-labelledby="headingOne"
+                                data-parent="#sidenavAccordionPages">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{ route('permissions.index') }}">View
+                                        permission
+                                    </a>
+                                    <a class="nav-link" href="{{ route('permissions.create') }}">Create
+                                        permission
+                                    </a>
+                                </nav>
+                            </div>
                         </nav>
                     </div>
                     <div class="sb-sidenav-menu-heading">Addons</div>
