@@ -42,7 +42,7 @@ class DepartmentController extends Controller
 
         $data = $request->all();
         Department::create($data);
-        return back()->with('message', 'Department created Successfully');
+        return redirect()->route('departments.index')->with('message', 'Department created Successfully');
     }
 
     /**
@@ -80,7 +80,7 @@ class DepartmentController extends Controller
         $department = Department::find($id);
         $data = $request->all();
         $department->update($data);
-        return redirect()->route('departments.index')->with('message','Record updated successfully');
+        return redirect()->route('departments.index')->with('message', 'Record updated successfully');
     }
 
     /**
@@ -91,6 +91,8 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $department = Department::find($id);
+        $department->delete();
+        return redirect()->route('departments.index')->with('message', 'Record deleted successfully');
     }
 }
