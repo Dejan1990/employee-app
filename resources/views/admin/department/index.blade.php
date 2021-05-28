@@ -32,7 +32,7 @@
                                     <td>{{ $department->name }}</td>
                                     <td>{{ $department->description }}</td>
                                     <td>
-                                        <a href="#">
+                                        <a href="{{ route('departments.edit', [$department->id]) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                     </td>
