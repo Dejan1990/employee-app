@@ -64,7 +64,8 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permission = Permission::find($id);
+        return view('admin.permission.edit', compact('permission'));
     }
 
     /**
@@ -76,7 +77,13 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required'
+        ]);
+
+        $permission = Permission::find($id);
+        $permission->update($request->all());
+        return redirect()->back()->with('message', 'Permission updated');
     }
 
     /**

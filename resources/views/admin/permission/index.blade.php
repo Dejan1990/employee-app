@@ -30,7 +30,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $permission->role->name }}</td>
                                     <td>
-                                        <a href="#">
+                                        <a href="{{ route('permissions.edit', [$permission->id]) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                     </td>
