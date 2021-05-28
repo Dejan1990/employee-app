@@ -10,4 +10,8 @@ class Permission extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'name' => 'array', // name je iz permissions table // skladistimo sve u name u json formatu
+    ];
 }
