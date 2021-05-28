@@ -48,7 +48,7 @@
                                     <td>{{ $user->address }}</td>
                                     <td>{{ $user->mobile_number }}</td>
                                     <td>
-                                        <a href="#">
+                                        <a href="{{ route('users.edit', [$user->id]) }}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                     </td>
