@@ -14,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        return view('admin.role.index', compact('roles'));
     }
 
     /**
@@ -40,7 +41,7 @@ class RoleController extends Controller
         ]);
         
         Role::create($request->all());
-        return redirect()->back()->with('message', 'Role created Successfully');
+        return redirect()->route('roles.index')->with('message', 'Role created Successfully');
     }
 
     /**
