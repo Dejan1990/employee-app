@@ -70,7 +70,8 @@ class LeaveController extends Controller
      */
     public function edit($id)
     {
-        //
+        $leave = Leave::find($id);
+        return view('admin.leave.edit', compact('leave'));
     }
 
     /**
@@ -82,7 +83,20 @@ class LeaveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'from'=>'required',
+            'to'=>'required',
+            'description'=>'required',
+            'type'=>'required'
+        ]);
+
+        $data = $request->all();
+        $leave = Leave::find($id);
+        $data['user_id'] = auth()->user()->id;
+        $data['message']='';
+        $data['status']=0;
+        $leave->update($data);
+        return redirect()->route('leaves.create')->with('message','Leave updated');
     }
 
     /**
@@ -93,6 +107,7 @@ class LeaveController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Leave::find($id)->delete();
+        return redirect()->route('leaves.create')->with('message', 'Leave deleted');
     }
 }
