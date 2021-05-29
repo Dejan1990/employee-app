@@ -68,7 +68,9 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            @if(isset(auth()->user()->role->permission['name']['permission']['can-edit']))
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            @endif
                             <a href="{{ route('permissions.index') }}" class="float-right">Back</a>
                         </div>
                     </div>
