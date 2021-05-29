@@ -32,15 +32,18 @@
                                     <td>{{ $department->name }}</td>
                                     <td>{{ $department->description }}</td>
                                     <td>
-                                        <a href="{{ route('departments.edit', [$department->id]) }}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                        @if(isset(auth()->user()->role->permission['name']['department']['can-edit']))
+                                            <a href="{{ route('departments.edit', [$department->id]) }}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                     <td>
-                                        <a href="#" data-toggle="modal"
-                                            data-target="#exampleModal{{ $department->id }}">
-                                            <i class="fas fa-trash text-danger"></i>
-                                        </a>
+                                        @if(isset(auth()->user()->role->permission['name']['department']['can-delete']))
+                                            <a href="#" data-toggle="modal" data-target="#exampleModal{{ $department->id }}">
+                                                <i class="fas fa-trash text-danger"></i>
+                                            </a>
+                                        @endif
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal{{ $department->id }}" tabindex="-1"
                                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

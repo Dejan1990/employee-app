@@ -17,9 +17,14 @@
                     </a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                         data-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link"
-                                href="{{ route('departments.create') }}">Create</a><a class="nav-link"
-                                href="{{ route('departments.index') }}">View</a></nav>
+                        <nav class="sb-sidenav-menu-nested nav">
+                            @if(isset(auth()->user()->role->permission['name']['department']['can-add']))
+                                <a class="nav-link" href="{{ route('departments.create') }}">Create</a>
+                            @endif
+                            @if(isset(auth()->user()->role->permission['name']['department']['can-list']))
+                                <a class="nav-link" href="{{ route('departments.index') }}">View</a>
+                            @endif
+                        </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                         aria-expanded="false" aria-controls="collapsePages">
@@ -38,8 +43,12 @@
                             <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
                                 data-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ route('roles.create') }}">Create Role</a>
-                                    <a class="nav-link" href="{{ route('roles.index') }}">View Role</a>
+                                    @if(isset(auth()->user()->role->permission['name']['role']['can-add']))
+                                        <a class="nav-link" href="{{ route('roles.create') }}">Create Role</a>
+                                    @endif
+                                    @if(isset(auth()->user()->role->permission['name']['role']['can-list']))
+                                        <a class="nav-link" href="{{ route('roles.index') }}">View Role</a>
+                                    @endif
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="{{ route('roles.index') }}" data-toggle="collapse"
@@ -50,8 +59,12 @@
                             <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                                 data-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ route('users.index') }}">View User</a>
-                                    <a class="nav-link" href="{{ route('users.create') }}">Create User</a>
+                                    @if(isset(auth()->user()->role->permission['name']['user']['can-list']))
+                                        <a class="nav-link" href="{{ route('users.index') }}">View User</a>
+                                    @endif
+                                    @if(isset(auth()->user()->role->permission['name']['user']['can-add']))
+                                        <a class="nav-link" href="{{ route('users.create') }}">Create User</a>
+                                    @endif
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="{{ route('roles.index') }}" data-toggle="collapse"
@@ -62,12 +75,12 @@
                             <div class="collapse" id="pagesCollapsePermission" aria-labelledby="headingOne"
                                 data-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ route('permissions.index') }}">View
-                                        permission
-                                    </a>
-                                    <a class="nav-link" href="{{ route('permissions.create') }}">Create
-                                        permission
-                                    </a>
+                                    @if(isset(auth()->user()->role->permission['name']['permission']['can-list']))
+                                        <a class="nav-link" href="{{ route('permissions.index') }}">View permission</a>
+                                    @endif
+                                    @if(isset(auth()->user()->role->permission['name']['permission']['can-add']))
+                                        <a class="nav-link" href="{{ route('permissions.create') }}">Create permission</a>
+                                    @endif
                                 </nav>
                             </div>
                         </nav>

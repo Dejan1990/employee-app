@@ -32,14 +32,18 @@
                                     <td>{{ $role->name }}</td>
                                     <td>{{ $role->description }}</td>
                                     <td>
-                                        <a href="{{ route('roles.edit', [$role->id]) }}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                        @if(isset(auth()->user()->role->permission['name']['role']['can-edit']))
+                                            <a href="{{ route('roles.edit', [$role->id]) }}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal{{ $role->id }}">
-                                            <i class="fas fa-trash text-danger"></i>
-                                        </a>
+                                        @if(isset(auth()->user()->role->permission['name']['role']['can-delete']))
+                                            <a href="#" data-toggle="modal" data-target="#exampleModal{{ $role->id }}">
+                                                <i class="fas fa-trash text-danger"></i>
+                                            </a>
+                                        @endif
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal{{ $role->id }}" tabindex="-1"
                                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
