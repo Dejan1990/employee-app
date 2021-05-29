@@ -57,7 +57,79 @@
                             </div>
                         </div>
                     </div>
-                </form>
-          </div>
+            </form>
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date from</th>
+                    <th scope="col">Date To</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">type</th>
+                    <th scope="col">Reply</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($leaves as $leave)
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{ $leave->from }}</td>
+                        <td>{{ $leave->to }}</td>
+                        <td>{{ $leave->description }}</td>
+                        <td>{{ $leave->type }}</td>
+                        <td>{{ $leave->message }}</td>
+                        <td>
+                            @if ($leave->status == 0)
+                                <span class="alert alert-danger">pending</span>
+                            @else
+                                <span class="alert alert-success">Approved</span>
+                            @endif
+                        </td>
+
+                        <td>
+                            <a href="{{ route('leaves.edit', [$leave->id]) }}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#exampleModal{{ $leave->id }}">
+                                <i class="fas fa-trash text-danger"></i>
+                            </a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{ $leave->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <form action="{{ route('leaves.destroy', [$leave->id]) }}" method="post">
+                                        @csrf
+                                        @method('DELETE') 
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Do you want to delete?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--Modal end-->
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     </div>
 @endsection
