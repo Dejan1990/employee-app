@@ -103,6 +103,24 @@
                             <a class="nav-link" href="{{ route('leaves.create') }}">Create leave</a>
                         </nav>
                     </div>
+                    <a class="nav-link collapsed" href="{{ route('roles.index') }}" data-toggle="collapse"
+                        data-target="#pagesCollapsenotice" aria-expanded="false" aria-controls="pagesCollapsenotice">
+                        <i class="fas fa-book"></i>&nbsp;Staff Notice
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                    </a>
+                    <div class="collapse" id="pagesCollapsenotice" aria-labelledby="headingOne"
+                        data-parent="#sidenavAccordionPages">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            @if (isset(auth()->user()->role->permission['name']['notice']['can-list']))
+                                <a class="nav-link" href="{{ route('notices.index') }}">View Notice</a>
+                            @endif
+                            @if (isset(auth()->user()->role->permission['name']['notice']['can-add']))
+                                <a class="nav-link" href="{{ route('notices.create') }}">Create leave</a>
+                            @endif
+                        </nav>
+                    </div>
                     <div class="sb-sidenav-menu-heading">Addons</div>
                     <a class="nav-link" href="charts.html">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
