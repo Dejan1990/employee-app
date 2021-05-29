@@ -36,5 +36,9 @@ trait  permissionTrait {
 		if(!isset(auth()->user()->role->permission['name']['permission']['can-add']) && Route::is('permissions.create')){
 			return abort(401);
 		}
+		//approve-reject staff leave
+		if(!isset(auth()->user()->role->permission['name']['leave']['can-list']) && Route::is('leaves.index')){
+			return abort(401);
+		}
 	}
 }

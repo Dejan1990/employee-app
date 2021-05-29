@@ -18,10 +18,10 @@
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                         data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            @if(isset(auth()->user()->role->permission['name']['department']['can-add']))
+                            @if (isset(auth()->user()->role->permission['name']['department']['can-add']))
                                 <a class="nav-link" href="{{ route('departments.create') }}">Create</a>
                             @endif
-                            @if(isset(auth()->user()->role->permission['name']['department']['can-list']))
+                            @if (isset(auth()->user()->role->permission['name']['department']['can-list']))
                                 <a class="nav-link" href="{{ route('departments.index') }}">View</a>
                             @endif
                         </nav>
@@ -43,10 +43,10 @@
                             <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
                                 data-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    @if(isset(auth()->user()->role->permission['name']['role']['can-add']))
+                                    @if (isset(auth()->user()->role->permission['name']['role']['can-add']))
                                         <a class="nav-link" href="{{ route('roles.create') }}">Create Role</a>
                                     @endif
-                                    @if(isset(auth()->user()->role->permission['name']['role']['can-list']))
+                                    @if (isset(auth()->user()->role->permission['name']['role']['can-list']))
                                         <a class="nav-link" href="{{ route('roles.index') }}">View Role</a>
                                     @endif
                                 </nav>
@@ -59,10 +59,10 @@
                             <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                                 data-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    @if(isset(auth()->user()->role->permission['name']['user']['can-list']))
+                                    @if (isset(auth()->user()->role->permission['name']['user']['can-list']))
                                         <a class="nav-link" href="{{ route('users.index') }}">View User</a>
                                     @endif
-                                    @if(isset(auth()->user()->role->permission['name']['user']['can-add']))
+                                    @if (isset(auth()->user()->role->permission['name']['user']['can-add']))
                                         <a class="nav-link" href="{{ route('users.create') }}">Create User</a>
                                     @endif
                                 </nav>
@@ -75,14 +75,32 @@
                             <div class="collapse" id="pagesCollapsePermission" aria-labelledby="headingOne"
                                 data-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    @if(isset(auth()->user()->role->permission['name']['permission']['can-list']))
-                                        <a class="nav-link" href="{{ route('permissions.index') }}">View permission</a>
+                                    @if (isset(auth()->user()->role->permission['name']['permission']['can-list']))
+                                        <a class="nav-link" href="{{ route('permissions.index') }}">View
+                                            permission</a>
                                     @endif
-                                    @if(isset(auth()->user()->role->permission['name']['permission']['can-add']))
-                                        <a class="nav-link" href="{{ route('permissions.create') }}">Create permission</a>
+                                    @if (isset(auth()->user()->role->permission['name']['permission']['can-add']))
+                                        <a class="nav-link" href="{{ route('permissions.create') }}">Create
+                                            permission</a>
                                     @endif
                                 </nav>
                             </div>
+                        </nav>
+                    </div>
+                    <a class="nav-link collapsed" href="{{ route('roles.index') }}" data-toggle="collapse"
+                        data-target="#pagesCollapseLeave" aria-expanded="false" aria-controls="pagesCollapseLeave">
+                        <i class="fas fa-pencil-alt"></i>&nbsp;Staff Leave
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                    </a>
+                    <div class="collapse" id="pagesCollapseLeave" aria-labelledby="headingOne"
+                        data-parent="#sidenavAccordionPages">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            @if (isset(auth()->user()->role->permission['name']['leave']['can-list']))
+                                <a class="nav-link" href="{{ route('leaves.index') }}">Approve leave</a>
+                            @endif
+                            <a class="nav-link" href="{{ route('leaves.create') }}">Create leave</a>
                         </nav>
                     </div>
                     <div class="sb-sidenav-menu-heading">Addons</div>

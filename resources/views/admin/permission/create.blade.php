@@ -74,6 +74,15 @@
                                         <td><input type="checkbox" name="name[user][can-view]" value="1"></td>
                                         <td><input type="checkbox" name="name[user][can-list]" value="1"></td>
                                     </tr>
+                                    <tr>
+                                        <td>Approve Leave</td>
+                                        <td><input type="checkbox" name="name[leave][can-add]" value="1"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
                                 </tbody>
                             </table>
                             <button type="submit" class="btn btn-primary">Submit</button>
